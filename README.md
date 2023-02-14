@@ -18,4 +18,5 @@ many situations and environments, because
 of its capability to pass the obstacles it faces
 through many ways.
 ___
-developing and testing  an embedded system and control system for mars rover
+developing and testing  an embedded system and control system for mars rover.
+![Rover Photo](https://drive.google.com/file/d/1-1kHw5pbeJUHNr2BUDQFOPhH6OcEakHn/view)
