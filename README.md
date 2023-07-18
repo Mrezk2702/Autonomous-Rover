@@ -10,7 +10,7 @@ robotics.
 ___
 Our Rover is a prototype of an autonomous
 system motor vehicle designed to move and
-explore the environment through an
+explore the environment through 
 embedded system.
 ___
 The Rover is designed mainly to work in
