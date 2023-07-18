@@ -2,7 +2,7 @@
  * Timers_register.h
  *
  *  Created on: Nov 9, 2022
- *      Author: mrezk
+ *      Author: Team Members
  */
 
 #ifndef TIMERS_REGISTER_H_
@@ -119,7 +119,6 @@
 #define TCCR3B_CS32   2
 #define TCCR3B_CS31   1
 #define TCCR3B_CS30   0
-
 
 
 

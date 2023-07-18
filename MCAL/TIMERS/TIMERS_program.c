@@ -6,7 +6,7 @@
 #include "Timers_private.h"
 #include "Timers_interface.h"
 #include "Timers_config.h"
-
+#include"DIO_interface.h"
 
 
 /***********************************************Timer0****************************************************************************/
@@ -159,7 +159,7 @@ u8 Timer0_u8Timer0OVFCallBackFunc(void (*Copy_pvFunc)(void))
 	u8 Local_u8ErrorState=OK;
 	if(Copy_pvFunc!=NULL)
 	{
-		Copy_pvFunc=Global_pvFuncTimer0OVF;
+		Global_pvFuncTimer0OVF=Copy_pvFunc;
 	}
 	else
 	{
@@ -172,7 +172,7 @@ u8 Timer0_u8Timer0CTCCallBackFunc(void (*Copy_pvFunc)(void))
 	u8 Local_u8ErrorState=OK;
 	if(Copy_pvFunc!=NULL)
 	{
-		Copy_pvFunc=Global_pvFuncTimer0CTC;
+		Global_pvFuncTimer0CTC=Copy_pvFunc;
 	}
 	else
 	{
@@ -180,6 +180,13 @@ u8 Timer0_u8Timer0CTCCallBackFunc(void (*Copy_pvFunc)(void))
 	}
 	return Local_u8ErrorState;
 }
+
+u8 Timer0_u8ReadTimerValue(void)
+{
+	return TCNT0;
+}
+
+
 
 
 void __vector_15 (void)
@@ -1023,21 +1030,25 @@ u8 TIMER3_u8SetCompareMatchValue(u8 Copy_u8Channel,u16 Copy_CTCValue)
 {
 
 	u8 Local_u8ErrorState=0;
-	if(Copy_u8Channel<=65535&&Copy_u8Channel<=CHANNELC)
+
+	if(Copy_CTCValue<=65535&&Copy_u8Channel<=CHANNELC)
 	{
+
 		switch(Copy_u8Channel)
 		{
 		case CHANNELA:
-			OCR3AH=(u8)(Copy_u8Channel>>8);
-			OCR3AL=(u8) (Copy_u8Channel);
+			OCR3AH=(u8)(Copy_CTCValue>>8);
+			OCR3AL=(u8) (Copy_CTCValue);
+
 			break;
 		case CHANNELB:
-			OCR3BH=(u8)(Copy_u8Channel>>8);
-			OCR3BL=(u8) (Copy_u8Channel);
+			OCR3BH=(u8)(Copy_CTCValue>>8);
+			OCR3BL=(u8) (Copy_CTCValue);
+
 			break;
 		case CHANNELC:
-			OCR3CH=(u8)(Copy_u8Channel>>8);
-			OCR3CL=(u8) (Copy_u8Channel);
+			OCR3CH=(u8)(Copy_CTCValue>>8);
+			OCR3CL=(u8) (Copy_CTCValue);
 			break;
 		default :
 			/*do nothing*/
@@ -1056,7 +1067,7 @@ u8 TIMER3_u8SetCompareMatchValue(u8 Copy_u8Channel,u16 Copy_CTCValue)
 u8 TIMER3_u8SetICRValue(u16 Copy_u16ICR3Value)
 {
 	u8 Local_u8ErrorState=0;
-	if(Copy_u16ICR3Value<=16535)
+	if(Copy_u16ICR3Value<=65535)
 	{
 		ICR3H=(u8)(Copy_u16ICR3Value>>8);
 		ICR3L=(u8)(Copy_u16ICR3Value);

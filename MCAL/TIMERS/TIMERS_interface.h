@@ -2,18 +2,18 @@
  * Timers_interface.h
  *
  *  Created on: Nov 9, 2022
- *      Author: mrezk
+ *      Author: Team Members
  */
 
 #ifndef TIMERS_INTERFACE_H_
 #define TIMERS_INTERFACE_H_
 /*********************************************************TIMER 0***************************************************************/
-void TIMER0_voidInit(void);
+void Timer0_voidInit(void);
 u8 TIMER0_u8SetPreLoadValue(u8 Copy_u8CompareMatchValue);
-u8 TIMER0_u8SetCompareMatchValue(u8 Copy_u8CompareMatchValue);
-u8 TIMER0_u8Timer0OVFCallBackFunc(void (*Copy_pvFunc)(void));
-u8 TIMER0_u8Timer0CTCCallBackFunc(void (*Copy_pvFunc)(void));
-
+u8 Timer0_u8SetCompareMatchValue(u8 Copy_u8CompareMatchValue);
+u8 Timer0_u8Timer0OVFCallBackFunc(void (*Copy_pvFunc)(void));
+u8 Timer0_u8Timer0CTCCallBackFunc(void (*Copy_pvFunc)(void));
+u8 Timer0_u8ReadTimerValue(void);
 /*********************************************************TIMER 1**************************************************************/
 void TIMER1_voidInit(void);
 u8 TIMER1_u8SetCompareMatchValue(u8 Copy_u8Channel,u16 Copy_CTCValue);
